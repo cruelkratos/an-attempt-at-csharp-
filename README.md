@@ -1,4 +1,4 @@
-# Web Crawler for IITR Domain
+# Web Crawler and Page Rank for IITR Domain
 
 A simple C# web crawler that performs a breadth-first search on the IIT Roorkee website domain, collecting and displaying all discovered URLs that contain "iitr".
 
