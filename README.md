@@ -69,3 +69,4 @@ while (queue.Count > 0) {
 ## Future Improvements
 
 - walk in graph so page rankings
+- replace bfs with dfs -> set maxD = 5 or 6 apply page rank (kyu kar raha hu mein ye)
