@@ -21,9 +21,9 @@ namespace ppo_asla
         }
         public async Task bfs() {
             while (queue.Count > 0) {
-                await Task.Delay(1000);
+                await Task.Delay(190); // to avoid rate limit //use ache se 
                 var top = queue.Dequeue();
-                Console.WriteLine(top);
+                Console.WriteLine(top); // to see simultaneously
                 var list = await w.Driver(top);
                 if ( list.Count == 0 || list == null) {
                     continue;
@@ -56,7 +56,7 @@ namespace ppo_asla
             }
             catch (Exception e) {
                 //Console.WriteLine(e);
-                Console.WriteLine("BTTTTTTTTTTTTTTTTTTTT");
+                Console.WriteLine('\n');
                 return result;
             }
             var htmldoc = new HtmlAgilityPack.HtmlDocument();
@@ -71,7 +71,7 @@ namespace ppo_asla
             try {
                 foreach (var link in links) {
                     string hrefValue = link.GetAttributeValue("href", "");
-                    if (hrefValue != null && hrefValue.Contains("iitr")) {
+                    if (hrefValue != null && hrefValue.Contains("iitr.ac.in")) {
                         // don't deviate from iitr links for now!!
                         result.Add(hrefValue);
                     }
@@ -79,7 +79,7 @@ namespace ppo_asla
             }
             catch (Exception ex) { 
                 //Console.WriteLine(ex.Message);
-                Console.WriteLine("BT");
+                Console.WriteLine('\n');
             }
             return result;
         }
