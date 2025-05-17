@@ -1,0 +1,11 @@
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\bin\Debug\ppo-asla.exe.config
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\bin\Debug\ppo-asla.exe
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\bin\Debug\ppo-asla.pdb
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\obj\Debug\ppo-asla.csproj.AssemblyReference.cache
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\obj\Debug\ppo-asla.csproj.CoreCompileInputs.cache
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\obj\Debug\ppo-asla.exe
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\obj\Debug\ppo-asla.pdb
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\bin\Debug\HtmlAgilityPack.dll
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\bin\Debug\HtmlAgilityPack.xml
+C:\Users\mailg\source\repos\ppo-asla\ppo-asla\obj\Debug\ppo-asla.csproj.Up2Date
