@@ -1,39 +1,40 @@
-# Web Crawler and Page Rank for IITR Domain
 
-A simple C# web crawler that performs a breadth-first search on the IIT Roorkee website domain, collecting and displaying all discovered URLs that contain "iitr".
+# Web Crawler and PageRank for IITR Domain
+
+A simple C# web crawler that performs a **depth-limited DFS** on the IIT Roorkee website domain, building a graph of internal links and calculating PageRank scores to identify the most important pages.
 
 ## Overview
 
-This application starts at the IIT Roorkee homepage (https://iitr.ac.in/) and systematically explores all linked pages within the domain, following a breadth-first search approach. It collects all URLs that contain the string "iitr" and prints them to the console.
+This application starts at the IIT Roorkee homepage (https://iitr.ac.in/) and systematically explores linked pages within the domain using a **depth-limited depth-first search** (DFS). It collects all URLs that contain the string `"iitr"` and builds a directed graph from the discovered links. A simplified **PageRank algorithm** is then applied to rank the importance of each page.
 
 ## Features
 
-- Breadth-first crawling strategy to explore web pages
-- URL deduplication to avoid processing the same URL multiple times
+- Depth-limited DFS crawling strategy
+- URL deduplication to avoid revisiting pages
 - HTML parsing using the HtmlAgilityPack library
+- Graph construction based on internal hyperlinks
+- Simplified PageRank implementation
 - HTTP request handling with automatic redirect following
 - SSL certificate validation bypassing (for development purposes)
 
 ## Requirements
 
 - .NET Framework or .NET Core
-- HtmlAgilityPack package
+- HtmlAgilityPack NuGet package
 
 ## Project Structure
 
-- **Program.cs**: Contains the main entry point and executes the crawler
-- **RunQueue.cs**: Implements the breadth-first search algorithm for web crawling
-- **WebCrawler.cs**: Handles HTTP requests and HTML parsing to extract links
+- **Program.cs**: Entry point of the application; triggers crawl and PageRank computation
+- **RunQueue.cs**: Implements DFS and builds the graph OR just crawl the entire site with BFS and extract the links
+- **WebCrawler.cs**: Handles HTTP requests and extracts links from HTML
 
 ## How It Works
 
-1. The application initializes a queue with the starting URL (https://iitr.ac.in/)
-2. For each URL in the queue:
-   - The URL is fetched using an HTTP GET request
-   - The HTML content is parsed to extract all links (`<a href>` tags)
-   - Links containing "iitr" are filtered and added to the queue if they haven't been processed before
-3. The process continues until the queue is empty (all discoverable links have been processed)
-4. All discovered URLs are printed to the console
+1. The application starts with the seed URL `https://iitr.ac.in/`
+2. A **depth-limited DFS** (max depth = 5) explores all internal links containing `"iitr.ac.in"`
+3. A **directed graph** is constructed with URLs as nodes and hyperlinks as edges
+4. A simplified PageRank algorithm runs on the graph for a fixed number of iterations
+5. Final PageRank scores are displayed in descending order
 
 ## Code Examples
 
@@ -41,32 +42,37 @@ This application starts at the IIT Roorkee homepage (https://iitr.ac.in/) and sy
 
 ```csharp
 var run = new RunQueue("https://iitr.ac.in/");
-await run.bfs();
+await run.dfs("https://iitr.ac.in/", 5);
 ```
 
-### Processing URLs
+### Computing PageRank
 
 ```csharp
-// Queue initialization
-queue = new Queue<string>();
-urls = new HashSet<string>();
-queue.Enqueue(url);
+var ranks = run.PageRank();
 
-// BFS implementation
-while (queue.Count > 0) {
-    await Task.Delay(1000);
-    var top = queue.Dequeue();
-    Console.WriteLine(top);
-    var list = await w.Driver(top);
-    // Process discovered links...
+foreach (var pair in ranks.OrderByDescending(p => p.Value).Take(10)) {
+    Console.WriteLine($"{pair.Key} => {pair.Value:F10}");
 }
 ```
 
-## NOTES
+## Sample PageRank Output
 
-- You could pick up the data of the website by using the html tree root from all `p` tags `hi` tags and `img` tags my web crawler is a simple graph walker maybe i can add page rank functionality to it as well. 
+| URL                                                                                  | PageRank Score     |
+|---------------------------------------------------------------------------------------|--------------------|
+| [https://newwebmail.iitr.ac.in/](https://newwebmail.iitr.ac.in/)                     | 0.0014530104       |
+| [https://www.iitr.ac.in/](https://www.iitr.ac.in/)                                   | 0.0011748830       |
+| [https://iitr.ac.in/Departments/index.html](https://iitr.ac.in/Departments/index.html) | 0.0009834198       |
+| [https://iitr.ac.in/Institute/Contact%2520Us.html](https://iitr.ac.in/Institute/Contact%2520Us.html) | 0.0007755391       |
+
+## Notes
+
+- This is a minimal crawler focused only on internal links containing `"iitr.ac.in"`
+- SSL validation is bypassed for simplicity — not recommended for production
+- More accurate PageRank results require a larger crawl and more iterations
 
 ## Future Improvements
 
-- walk in graph so page rankings
-- replace bfs with dfs -> set maxD = 5 or 6 apply page rank (kyu kar raha hu mein ye)
+- Add support for multi-threaded or parallel crawling
+- Expand to other domains or allow user-defined domain constraints
+- Improve HTML parsing to extract page content, not just links
+- Enhance ranking logic with backlink weight or content-based features
