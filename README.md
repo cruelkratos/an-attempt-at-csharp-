@@ -15,7 +15,6 @@ This application starts at the IIT Roorkee homepage (https://iitr.ac.in/) and sy
 - Graph construction based on internal hyperlinks
 - Simplified PageRank implementation
 - HTTP request handling with automatic redirect following
-- SSL certificate validation bypassing (for development purposes)
 
 ## Requirements
 
@@ -34,7 +33,7 @@ This application starts at the IIT Roorkee homepage (https://iitr.ac.in/) and sy
 2. A **depth-limited DFS** (max depth = 5) explores all internal links containing `"iitr.ac.in"`
 3. A **directed graph** is constructed with URLs as nodes and hyperlinks as edges
 4. A simplified PageRank algorithm runs on the graph for a fixed number of iterations
-5. Final PageRank scores are displayed in descending order
+5. Final PageRank scores are displayed 
 
 ## Code Examples
 
