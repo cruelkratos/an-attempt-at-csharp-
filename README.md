@@ -49,10 +49,6 @@ await run.dfs("https://iitr.ac.in/", 5);
 
 ```csharp
 var ranks = run.PageRank();
-
-foreach (var pair in ranks.OrderByDescending(p => p.Value).Take(10)) {
-    Console.WriteLine($"{pair.Key} => {pair.Value:F10}");
-}
 ```
 
 ## Sample PageRank Output
