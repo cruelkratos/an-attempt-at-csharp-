@@ -3,9 +3,6 @@
 
 A simple C# web crawler that performs a **depth-limited DFS** on the IIT Roorkee website domain, building a graph of internal links and calculating PageRank scores to identify the most important pages.
 
-## Overview
-
-This application starts at the IIT Roorkee homepage (https://iitr.ac.in/) and systematically explores linked pages within the domain using a **depth-limited depth-first search** (DFS). It collects all URLs that contain the string `"iitr"` and builds a directed graph from the discovered links. A simplified **PageRank algorithm** is then applied to rank the importance of each page.
 
 ## Features
 
@@ -26,14 +23,6 @@ This application starts at the IIT Roorkee homepage (https://iitr.ac.in/) and sy
 - **Program.cs**: Entry point of the application; triggers crawl and PageRank computation
 - **RunQueue.cs**: Implements DFS and builds the graph OR just crawl the entire site with BFS and extract the links
 - **WebCrawler.cs**: Handles HTTP requests and extracts links from HTML
-
-## How It Works
-
-1. The application starts with the seed URL `https://iitr.ac.in/`
-2. A **depth-limited DFS** (max depth = 5) explores all internal links containing `"iitr.ac.in"`
-3. A **directed graph** is constructed with URLs as nodes and hyperlinks as edges
-4. A simplified PageRank algorithm runs on the graph for a fixed number of iterations
-5. Final PageRank scores are displayed 
 
 ## Code Examples
 
